@@ -20,7 +20,8 @@
 + (void)swizzleInstanceSEL:(SEL)originalSEL withSEL:(SEL)swizzledSEL forClass:(Class)cls;
 
 + (void)resolveException:(NSException *)exception withDescription:(NSString *)descripation;
-
+- (void)test;
++ (void)test;
 @end
 
 #endif

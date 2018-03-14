@@ -18,8 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *str = nil;
-    @[str];
+    
+    [[[NSString alloc] init] test];
 }
 
 

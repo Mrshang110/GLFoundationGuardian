@@ -81,16 +81,19 @@
 + (void)resolveException:(NSException *)exception withDescription:(NSString *)descripation {
 
     NSString *formatString =
-    @"\n\n \
-    ====================================== GLFG Log ======================================\n \
-    %@\n \
-    %@\n \
-    %@\n \
-    ====================================== GLFG End ======================================\n \
-    ";
+    
+@"\n\n \
+======================================  GLFG Excaption  ======================================\n\n \
+%@\n \
+%@\n \
+%@\n\n \
+--------------------------------------- GLFG Stack Info --------------------------------------\n\n \
+%@\n \
+=======================================     GLFG End    ======================================\n\n \
+";
     
     descripation = descripation.length ? descripation : @"default, only tyr and catch";
-    GLLog(formatString, exception.name, exception.reason, descripation);
+    GLLog(formatString, exception.name, exception.reason, descripation, exception.callStackSymbols);
 }
 
 #pragma mark - KVC - Swizzled Method

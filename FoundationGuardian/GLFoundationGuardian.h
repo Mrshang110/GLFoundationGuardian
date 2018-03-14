@@ -23,8 +23,10 @@
 
 #endif
 
-#if _INTERNAL_FG_ENABLED
+#if DEBUG
 #define GLLog(...) NSLog(__VA_ARGS__)
+#else
+#define GLLog(...)
 #endif
 
 #endif /* GLFoundationGuardian_h */

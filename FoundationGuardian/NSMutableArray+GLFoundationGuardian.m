@@ -42,6 +42,7 @@
     });
 }
 
+#pragma mark - Message - Swizzled Method
 - (id)gl_objectAtIndex:(NSUInteger)index {
     
     id object = nil;
