@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+GLFoundationGuardian.h"
+#import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
 #if _INTERNAL_FG_ENABLED
@@ -80,6 +81,7 @@
 
 + (void)resolveException:(NSException *)exception withDescription:(NSString *)descripation {
 
+#if DEBUG
     NSString *formatString =
     
 @"\n\n \
@@ -94,6 +96,10 @@
     
     descripation = descripation.length ? descripation : @"default, only tyr and catch";
     GLLog(formatString, exception.name, exception.reason, descripation, exception.callStackSymbols);
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:exception.name message:exception.reason delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+    [alertView show];
+#endif
 }
 
 #pragma mark - KVC - Swizzled Method

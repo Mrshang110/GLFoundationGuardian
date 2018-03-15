@@ -39,6 +39,10 @@
         [self swizzleInstanceSEL:@selector(insertObject:atIndex:)
                          withSEL:@selector(gl_insertObject:atIndex:)
                         forClass:cls];
+        
+        [self swizzleInstanceSEL:@selector(removeObjectsInRange:)
+                         withSEL:@selector(gl_removeObjectsInRange:)
+                        forClass:cls];
     });
 }
 
@@ -97,6 +101,16 @@
     
     @try {
         [self gl_insertObject:anObject atIndex:index];
+    }
+    @catch (NSException *excaption) {
+        [[self class] resolveException:excaption withDescription:nil];
+    }
+}
+
+- (void)gl_removeObjectsInRange:(NSRange)range {
+    
+    @try {
+        [self gl_removeObjectsInRange:range];
     }
     @catch (NSException *excaption) {
         [[self class] resolveException:excaption withDescription:nil];

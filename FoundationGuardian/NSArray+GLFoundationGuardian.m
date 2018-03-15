@@ -42,6 +42,9 @@
         
         [self swizzleInstanceSEL:@selector(objectsAtIndexes:)
                          withSEL:@selector(gl_objectsAtIndexes:)];
+        
+        [self swizzleInstanceSEL:@selector(subarrayWithRange:)
+                         withSEL:@selector(gl_subarrayWithRange:)];
     });
 }
 
@@ -148,6 +151,21 @@
     }
     @finally {
         return object;
+    }
+}
+
+- (NSArray *)gl_subarrayWithRange:(NSRange)range {
+    
+    NSArray *array = nil;
+    
+    @try {
+        array = [self gl_subarrayWithRange:range];
+    }
+    @catch (NSException *excaption) {
+        [[self class] resolveException:excaption withDescription:nil];
+    }
+    @finally {
+        return array;
     }
 }
 

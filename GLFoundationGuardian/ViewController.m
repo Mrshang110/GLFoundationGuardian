@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[[NSString alloc] init] test];
+    [[@[@1, @1]  mutableCopy] removeObjectsInRange:NSMakeRange(0, 100)];
 }
 
 
