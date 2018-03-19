@@ -30,12 +30,6 @@
         
         [self swizzleInstanceSEL:@selector(setValuesForKeysWithDictionary:)
                          withSEL:@selector(gl_setValuesForKeysWithDictionary:)];
-        
-        [self swizzleInstanceSEL:@selector(methodSignatureForSelector:)
-                         withSEL:@selector(gl_methodSignatureForSelector:)];
-        
-        [self swizzleInstanceSEL:@selector(forwardInvocation:)
-                         withSEL:@selector(gl_forwardInvocation:)];
     });
 }
 
@@ -141,34 +135,6 @@
     @catch (NSException *exception) {
         [[self class] resolveException:exception withDescription:nil];
     }
-}
-
-#pragma mark - Message - Swizzled Method
-- (NSMethodSignature *)gl_methodSignatureForSelector:(SEL)aSelector {
-    
-    NSMethodSignature *signature = [self gl_methodSignatureForSelector:aSelector];
-    
-    if (nil == signature) {
-        signature = [NSObject instanceMethodSignatureForSelector:@selector(dontDoAnything)];
-        
-    }
-    
-    return signature;
-}
-
-- (void)gl_forwardInvocation:(NSInvocation *)anInvocation {
-    
-    @try {
-        [self gl_forwardInvocation:anInvocation];
-    }
-    @catch (NSException *exception) {
-        [[self class] resolveException:exception withDescription:nil];
-    }
-}
-
-#pragma mark -
-- (void)dontDoAnything {
-    
 }
 
 @end
