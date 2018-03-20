@@ -110,7 +110,7 @@
 - (void)gl_setValue:(id)value forKeyPath:(nonnull NSString *)keyPath {
     
     @try {
-        [self gl_setValue:keyPath forKeyPath:keyPath];
+        [self gl_setValue:value forKeyPath:keyPath];
     }
     @catch (NSException *exception) {
         [[self class] resolveException:exception withDescription:nil];
